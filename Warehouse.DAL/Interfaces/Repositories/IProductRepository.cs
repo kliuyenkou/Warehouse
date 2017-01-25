@@ -2,7 +2,7 @@
 
 namespace Warehouse.DAL.Interfaces.Repositories
 {
-    interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         Product GetById(int productId);
     }

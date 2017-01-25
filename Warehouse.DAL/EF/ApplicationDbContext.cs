@@ -3,7 +3,7 @@ using Warehouse.DAL.Entities;
 
 namespace Warehouse.DAL.EF
 {
-    class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext() : base("name=DefaultConnection")
         {

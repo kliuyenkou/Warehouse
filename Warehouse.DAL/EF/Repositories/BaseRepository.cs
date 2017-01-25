@@ -6,7 +6,7 @@ using Warehouse.DAL.Interfaces.Repositories;
 
 namespace Warehouse.DAL.EF.Repositories
 {
-    class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly ApplicationDbContext context;
 

@@ -2,7 +2,7 @@
 
 namespace Warehouse.DAL.Interfaces.Repositories
 {
-    interface IShopRepository : IRepository<Shop>
+    public interface IShopRepository : IRepository<Shop>
     {
         Shop GetById(int shopId);
     }

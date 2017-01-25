@@ -3,7 +3,7 @@ using Warehouse.DAL.Interfaces.Repositories;
 
 namespace Warehouse.DAL.EF.Repositories
 {
-    class ProductRepository : BaseRepository<Product>, IProductRepository
+    public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
         public ProductRepository(ApplicationDbContext context) : base(context)
         {

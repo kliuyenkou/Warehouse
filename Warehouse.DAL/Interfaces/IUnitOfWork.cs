@@ -3,7 +3,7 @@ using Warehouse.DAL.Interfaces.Repositories;
 
 namespace Warehouse.DAL.Interfaces
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         IProductRepository Products { get; }
         IShopRepository Shops { get; }

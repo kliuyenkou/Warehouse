@@ -5,7 +5,7 @@ using Warehouse.DAL.Interfaces.Repositories;
 
 namespace Warehouse.DAL.EF
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
         public UnitOfWork(ApplicationDbContext context)
