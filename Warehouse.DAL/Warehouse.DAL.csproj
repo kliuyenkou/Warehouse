@@ -50,9 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\ApplicationDbContext.cs" />
+    <Compile Include="EF\Repositories\BaseRepository.cs" />
+    <Compile Include="EF\Repositories\ProductInTheShopRepository.cs" />
+    <Compile Include="EF\Repositories\ProductRepository.cs" />
+    <Compile Include="EF\Repositories\ShopRepository.cs" />
+    <Compile Include="EF\UnitOfWork.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductInTheShop.cs" />
     <Compile Include="Entities\Shop.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\Repositories\IProductInTheShopRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IProductRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IShopRepository.cs" />
     <Compile Include="Migrations\201701251219557_InitialModel.cs" />
     <Compile Include="Migrations\201701251219557_InitialModel.Designer.cs">
       <DependentUpon>201701251219557_InitialModel.cs</DependentUpon>
@@ -69,6 +79,7 @@
       <DependentUpon>201701251219557_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
