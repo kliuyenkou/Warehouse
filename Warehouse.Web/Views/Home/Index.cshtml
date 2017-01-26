@@ -5,24 +5,24 @@
 }
 <div class="gap-60"></div>
 <div>
+
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h3>Our retail shops</h3>
-            <table class="table table-hover">
+            <table id="shopsTable" class="table table-hover">
                 <tr>
                     <th>Title</th>
                     <th>Address</th>
                     <th>Shedule</th>
                     <th></th>
                 </tr>
-                @foreach (var shop in Model)
-                {
+                @foreach (var shop in Model) {
                     <tr data-shop-id="@shop.Id">
-                        <td>@shop.Title</td>
-                        <td>@shop.Address</td>
-                        <td>@shop.Schedule</td>
+                        <td id="title">@shop.Title</td>
+                        <td id="address">@shop.Address</td>
+                        <td id="schedule">@shop.Schedule</td>
                         <td>
-                            <a href="#" title="Show products in the shop">
+                            <a class="js-project-ref" href="#" title="Show products in the shop">
                                 <i class="glyphicon glyphicon-circle-arrow-right"></i>
                             </a>
                         </td>
@@ -30,9 +30,12 @@
                 }
             </table>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createShopModal">Add shop</button>
-            
+
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5 col-md-offset-1">
+            <div id="productsContainer">
+
+            </div>
         </div>
     </div>
 </div>
@@ -72,9 +75,18 @@
 
 @section scripts{
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            $('.js-project-ref').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                var trShop = link.parents('tr');
+                var shopId = trShop.attr('data-shop-id');
+                var shopTitle = trShop.find('#title').text();
+                ProductController.showProductsTable(shopId, shopTitle);
+
+            });
             $('#createShopModal').on('show.bs.modal',
-                function(event) {
+                function (event) {
                     var button = $(event.relatedTarget); // Button that triggered the modal
                     var recipient = button.data('whatever'); // Extract info from data-* attributes
                     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -83,6 +95,7 @@
                     modal.find('.modal-title').text('Create shop');
                     modal.find('.modal-body input').val(recipient);
                 });
+
         });
     </script>
 }
