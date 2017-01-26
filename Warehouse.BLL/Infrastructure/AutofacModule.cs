@@ -3,6 +3,8 @@ using Warehouse.DAL.EF;
 using Warehouse.DAL.EF.Repositories;
 using Warehouse.DAL.Interfaces;
 using Warehouse.DAL.Interfaces.Repositories;
+using Warehouse.DAL.Management;
+using Warehouse.DAL.Management.Interfaces;
 
 namespace Warehouse.BLL.Infrastructure
 {
@@ -15,6 +17,7 @@ namespace Warehouse.BLL.Infrastructure
             builder.RegisterType<ShopRepository>().As<IShopRepository>().InstancePerRequest();
             builder.RegisterType<ProductInTheShopRepository>().As<IProductInTheShopRepository>().InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
+            builder.RegisterType<SupplyManagement>().As<ISupplyManagement>().InstancePerRequest();
         }
     }
 }
