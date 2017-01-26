@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Warehouse.BLL.Infrastructure;
+using Warehouse.Web.Infrastructure;
 
 namespace Warehouse.Web
 {
@@ -17,6 +18,7 @@ namespace Warehouse.Web
 
             // REGISTER MODULS
             builder.RegisterModule(new AutofacModule());
+            builder.RegisterModule(new AutofacWebModule());
 
             // REGISTER CONTROLLERS SO DEPENDENCIES ARE CONSTRUCTOR INJECTED
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
