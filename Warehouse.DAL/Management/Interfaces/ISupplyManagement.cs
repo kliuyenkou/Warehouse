@@ -6,5 +6,6 @@ namespace Warehouse.DAL.Management.Interfaces
     public interface ISupplyManagement
     {
         IEnumerable<Shop> GetShops();
+        IEnumerable<Product> GetProductsInShop(int shopId);
     }
 }
