@@ -63,6 +63,8 @@
     <Compile Include="Interfaces\Repositories\IRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProductRepository.cs" />
     <Compile Include="Interfaces\Repositories\IShopRepository.cs" />
+    <Compile Include="Management\Interfaces\ISupplyManagement.cs" />
+    <Compile Include="Management\SupplyManagement.cs" />
     <Compile Include="Migrations\201701251219557_InitialModel.cs" />
     <Compile Include="Migrations\201701251219557_InitialModel.Designer.cs">
       <DependentUpon>201701251219557_InitialModel.cs</DependentUpon>

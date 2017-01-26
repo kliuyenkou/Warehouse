@@ -1,31 +1,88 @@
-﻿@{
+﻿@using Warehouse.DAL.Entities
+@model IEnumerable<Warehouse.Web.ViewModels.ShopViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="gap-60"></div>
+<div>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Our retail shops</h3>
+            <table class="table table-hover">
+                <tr>
+                    <th>Title</th>
+                    <th>Address</th>
+                    <th>Shedule</th>
+                    <th></th>
+                </tr>
+                @foreach (var shop in Model)
+                {
+                    <tr data-shop-id="@shop.Id">
+                        <td>@shop.Title</td>
+                        <td>@shop.Address</td>
+                        <td>@shop.Schedule</td>
+                        <td>
+                            <a href="#" title="Show products in the shop">
+                                <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createShopModal">Add shop</button>
+            
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+@*Modal Window*@
+<div class="modal fade" id="createShopModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createProjectLable">Create shop</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="shop-title" class="control-label">Title:</label>
+                        <input type="text" class="form-control" id="shop-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-address" class="control-label">Address:</label>
+                        <textarea class="form-control" id="shop-address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-shedule" class="control-label">Shedule:</label>
+                        <textarea class="form-control" id="shop-shedule"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Create</button>
+            </div>
+        </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $('#createShopModal').on('show.bs.modal',
+                function(event) {
+                    var button = $(event.relatedTarget); // Button that triggered the modal
+                    var recipient = button.data('whatever'); // Extract info from data-* attributes
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this);
+                    modal.find('.modal-title').text('Create shop');
+                    modal.find('.modal-body input').val(recipient);
+                });
+        });
+    </script>
+}
