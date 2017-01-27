@@ -8,6 +8,7 @@ namespace Warehouse.DAL.EF
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -15,13 +16,16 @@ namespace Warehouse.DAL.EF
             Shops = new ShopRepository(_context);
             ProductsInTheShops = new ProductInTheShopRepository(_context);
         }
+
         public IProductRepository Products { get; }
         public IShopRepository Shops { get; }
         public IProductInTheShopRepository ProductsInTheShops { get; }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
         }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

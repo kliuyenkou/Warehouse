@@ -9,6 +9,7 @@ namespace Warehouse.Web.Controllers
     public class ProductsController : ApiController
     {
         private readonly IProductService _productService;
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
@@ -19,7 +20,7 @@ namespace Warehouse.Web.Controllers
         public IEnumerable<ProductDto> GetProductsInTheShop(int shopId)
         {
             var products = _productService.ProductsInShop(shopId);
-            var productsDto = products.Select(p => new ProductDto()
+            var productsDto = products.Select(p => new ProductDto
             {
                 Id = p.Id,
                 Title = p.Title,
@@ -33,7 +34,7 @@ namespace Warehouse.Web.Controllers
         public IEnumerable<ProductDto> GetProductsNotInTheShop(int shopId)
         {
             var products = _productService.ProductsNotInShop(shopId);
-            var productsDto = products.Select(p => new ProductDto()
+            var productsDto = products.Select(p => new ProductDto
             {
                 Id = p.Id,
                 Title = p.Title,
@@ -48,7 +49,7 @@ namespace Warehouse.Web.Controllers
         {
             _productService.AddProductToTheShop(pr.ShopId, pr.ProductId);
             var product = _productService.GetProduct(pr.ProductId);
-            var productDto = new ProductDto()
+            var productDto = new ProductDto
             {
                 Id = product.Id,
                 Title = product.Title,
@@ -56,6 +57,5 @@ namespace Warehouse.Web.Controllers
             };
             return productDto;
         }
-
     }
 }

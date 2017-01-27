@@ -6,6 +6,5 @@ namespace Warehouse.BLL.Interfaces
     public interface IShopService
     {
         IEnumerable<Shop> GetAllShops();
-
     }
 }

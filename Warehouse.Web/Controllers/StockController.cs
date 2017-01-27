@@ -20,7 +20,7 @@ namespace Warehouse.Web.Controllers
         {
             var products = _productService.AllProducts();
             var productsViewModel = products.Select(p =>
-                new ProductViewModel()
+                new ProductViewModel
                 {
                     Id = p.Id,
                     Title = p.Title,
@@ -42,7 +42,7 @@ namespace Warehouse.Web.Controllers
         public ActionResult Create(ProductViewModel viewModel)
         {
             if (!ModelState.IsValid) return View("ProductForm", viewModel);
-            var product = new Product()
+            var product = new Product
             {
                 Title = viewModel.Title,
                 Description = viewModel.Description

@@ -14,6 +14,7 @@ namespace Warehouse.DAL.Management
         {
             _unitOfWork = unitOfWork;
         }
+
         public IEnumerable<Shop> GetShops()
         {
             return _unitOfWork.Shops.GetAll();
@@ -21,7 +22,10 @@ namespace Warehouse.DAL.Management
 
         public IEnumerable<Product> GetProductsInShop(int shopId)
         {
-            var products = _unitOfWork.ProductsInTheShops.GetRecordsWithProductLoaded(r => r.ShopId == shopId).Select(r => r.Product).ToList();
+            var products =
+                _unitOfWork.ProductsInTheShops.GetRecordsWithProductLoaded(r => r.ShopId == shopId)
+                    .Select(r => r.Product)
+                    .ToList();
             return products;
         }
 
@@ -38,7 +42,10 @@ namespace Warehouse.DAL.Management
 
         public IEnumerable<Product> GetProductsNotInShop(int shopId)
         {
-            var productsInTheShop = _unitOfWork.ProductsInTheShops.GetRecordsWithProductLoaded(r => r.ShopId == shopId).Select(r => r.Product).ToList();
+            var productsInTheShop =
+                _unitOfWork.ProductsInTheShops.GetRecordsWithProductLoaded(r => r.ShopId == shopId)
+                    .Select(r => r.Product)
+                    .ToList();
             var allProducts = _unitOfWork.Products.GetAll();
             var productsNotInTheShop = allProducts.Where(p => !productsInTheShop.Any(p2 => p2.Id == p.Id));
             return productsNotInTheShop;
@@ -46,7 +53,7 @@ namespace Warehouse.DAL.Management
 
         public void AddProductToTheShopById(int shopId, int productId)
         {
-            var productInTheShop = new ProductInTheShop() { ShopId = shopId, ProductId = productId };
+            var productInTheShop = new ProductInTheShop { ShopId = shopId, ProductId = productId };
             _unitOfWork.ProductsInTheShops.Add(productInTheShop);
             _unitOfWork.SaveChanges();
         }

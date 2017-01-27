@@ -19,7 +19,8 @@ namespace Warehouse.DAL.EF.Repositories
             return context.ProductsInTheShops.Find(productId, shopId);
         }
 
-        public IEnumerable<ProductInTheShop> GetRecordsWithProductLoaded(Expression<Func<ProductInTheShop, bool>> predicate)
+        public IEnumerable<ProductInTheShop> GetRecordsWithProductLoaded(
+            Expression<Func<ProductInTheShop, bool>> predicate)
         {
             return context.ProductsInTheShops.Where(predicate).Include(r => r.Product).ToList();
         }

@@ -1,5 +1,4 @@
-﻿@using Warehouse.DAL.Entities
-@model IEnumerable<Warehouse.Web.ViewModels.ShopViewModel>
+﻿@model IEnumerable<Warehouse.Web.ViewModels.ShopViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -16,7 +15,8 @@
                     <th>Shedule</th>
                     <th></th>
                 </tr>
-                @foreach (var shop in Model) {
+                @foreach (var shop in Model)
+                {
                     <tr data-shop-id="@shop.Id">
                         <td id="title">@shop.Title</td>
                         <td id="address">@shop.Address</td>
@@ -41,8 +41,8 @@
 
 @section scripts{
     <script>
-        $(document).ready(function () {
-            $('.js-project-ref').click(function (e) {
+        $(document).ready(function() {
+            $('.js-project-ref').click(function(e) {
                 e.preventDefault();
                 var link = $(e.target);
                 var trShop = link.parents('tr');

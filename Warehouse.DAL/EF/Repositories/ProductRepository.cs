@@ -8,6 +8,7 @@ namespace Warehouse.DAL.EF.Repositories
         public ProductRepository(ApplicationDbContext context) : base(context)
         {
         }
+
         public Product GetById(int productId)
         {
             return context.Products.Find(productId);

@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using Warehouse.DAL.Entities;
-using Warehouse.DAL.Migrations;
 
 namespace Warehouse.DAL.EF
 {

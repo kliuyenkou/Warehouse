@@ -31,7 +31,6 @@ namespace Warehouse.Web
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
         }
     }
 }

@@ -9,16 +9,18 @@ namespace Warehouse.BLL.Services
     public class ShopService : IShopService
     {
         private readonly ISupplyManagement _supplyManagement;
+
         public ShopService(ISupplyManagement supplyManagement)
         {
             _supplyManagement = supplyManagement;
         }
+
         public IEnumerable<Shop> GetAllShops()
         {
             var shopsEntity = _supplyManagement.GetShops();
             var shopsModels =
                 shopsEntity.Select(
-                    sh => new Shop()
+                    sh => new Shop
                     {
                         Id = sh.Id,
                         Title = sh.Title,

@@ -27,6 +27,5 @@ namespace Warehouse.DAL.EF.Repositories
         {
             context.Set<TEntity>().Remove(entity);
         }
-
     }
 }

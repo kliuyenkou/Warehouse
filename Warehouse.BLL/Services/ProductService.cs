@@ -9,10 +9,12 @@ namespace Warehouse.BLL.Services
     public class ProductService : IProductService
     {
         private readonly ISupplyManagement _supplyManagement;
+
         public ProductService(ISupplyManagement supplyManagement)
         {
             _supplyManagement = supplyManagement;
         }
+
         public IEnumerable<Product> ProductsInShop(int shopId)
         {
             var products = _supplyManagement.GetProductsInShop(shopId);
@@ -27,7 +29,7 @@ namespace Warehouse.BLL.Services
 
         public void SaveProduct(Product product)
         {
-            var productEntity = new DAL.Entities.Product()
+            var productEntity = new DAL.Entities.Product
             {
                 Title = product.Title,
                 Description = product.Description
@@ -49,12 +51,18 @@ namespace Warehouse.BLL.Services
         public Product GetProduct(int productId)
         {
             var productEntity = _supplyManagement.GetProductById(productId);
-            return new Product() { Id = productEntity.Id, Title = productEntity.Title, Description = productEntity.Description };
+            return new Product
+            {
+                Id = productEntity.Id,
+                Title = productEntity.Title,
+                Description = productEntity.Description
+            };
         }
 
-        private IEnumerable<Product> ConvertNotNullProductEntityToProduct(IEnumerable<DAL.Entities.Product> productsEntity)
+        private IEnumerable<Product> ConvertNotNullProductEntityToProduct(
+            IEnumerable<DAL.Entities.Product> productsEntity)
         {
-            return productsEntity.Where(p => p != null).Select(p => new Product()
+            return productsEntity.Where(p => p != null).Select(p => new Product
             {
                 Id = p.Id,
                 Title = p.Title,

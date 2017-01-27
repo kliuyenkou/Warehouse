@@ -1,19 +1,17 @@
-using Warehouse.DAL.Entities;
 using System.Data.Entity.Migrations;
+using Warehouse.DAL.EF;
 
 namespace Warehouse.DAL.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<Warehouse.DAL.EF.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Warehouse.DAL.EF.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
-
-
         }
     }
 }

@@ -3,7 +3,7 @@
         $.get("/shop/" + shopId + "/products")
             .done(success).fail(error);
     };
-    var getProductsNotInTheShop = function (shopId, success, error) {
+    var getProductsNotInTheShop = function(shopId, success, error) {
         $.get("/shop/" + shopId + "/products/add")
             .done(success).fail(error);
     };
