@@ -1,6 +1,6 @@
-﻿body {
+﻿html, body { height: 100%; }
+body {
     padding-top: 50px;
-    padding-bottom: 20px;
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
     font-size:16px;
 
@@ -32,4 +32,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .gap-40 {
      height: 40px;
+}
+
+.wrapper {
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -50px;
+    min-height: 100%;
+    /* Pad bottom by footer height */
+    padding: 0 0 50px;
+}
+
+.footer {
+    height: 50px;
+    background-color: #eeeeee;
 }
