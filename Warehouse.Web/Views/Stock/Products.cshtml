@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Warehouse.Web.ViewModels.ProductViewModel>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<div class="gap-40"></div>
+<h2>All products in warehouse</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr  data-product-id="@item.Id">
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+    </tr>
+}
+
+</table>

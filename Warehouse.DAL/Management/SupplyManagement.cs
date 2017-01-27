@@ -24,5 +24,16 @@ namespace Warehouse.DAL.Management
             var products = _unitOfWork.ProductsInTheShops.GetRecordsWithProductLoaded(r => r.ShopId == shopId).Select(r => r.Product).ToList();
             return products;
         }
+
+        public IEnumerable<Product> GetAllProducts()
+        {
+            return _unitOfWork.Products.GetAll();
+        }
+
+        public void CreateProduct(Product product)
+        {
+            _unitOfWork.Products.Add(product);
+            _unitOfWork.SaveChanges();
+        }
     }
 }

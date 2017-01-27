@@ -24,5 +24,25 @@ namespace Warehouse.BLL.Services
             });
         }
 
+        public IEnumerable<Product> AllProducts()
+        {
+            var products = _supplyManagement.GetAllProducts();
+            return products.Where(p => p != null).Select(p => new Product()
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description
+            });
+        }
+
+        public void SaveProduct(Product product)
+        {
+            var productEntity = new DAL.Entities.Product()
+            {
+                Title = product.Title,
+                Description = product.Description
+            };
+            _supplyManagement.CreateProduct(productEntity);
+        }
     }
 }
