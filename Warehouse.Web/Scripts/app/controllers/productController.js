@@ -1,24 +1,29 @@
 ﻿var ProductController = function (service) {
-    var renderProducts = function (products, shopTitle) {
+    var renderProducts = function(products, shopTitle) {
         var divContainer = $('#productsContainer');
         divContainer.empty();
-            var h = document.createElement('h3');
-            h.innerText = 'Products in ' + shopTitle;
-            divContainer.append(h);
-            var table = document.createElement('table');
-            table.className = 'table';
-            var tbody = document.createElement("tbody");
-            var trHeader = renderTableHeader();
-            tbody.appendChild(trHeader);
-            table.append(tbody);
-            $.each(products,
-                function (index, record) {
-                    if (record !== null) {
-                        var tRow = renderRecord(record);
-                        tbody.appendChild(tRow);
-                    }
-                });
-            divContainer.append(table);
+        var h = document.createElement('h3');
+        h.innerText = 'Products in "' + shopTitle + '"';
+        divContainer.append(h);
+        var table = document.createElement('table');
+        table.className = 'table';
+        var tbody = document.createElement("tbody");
+        var trHeader = renderTableHeader();
+        tbody.appendChild(trHeader);
+        table.append(tbody);
+        $.each(products,
+            function(index, record) {
+                if (record !== null) {
+                    var tRow = renderRecord(record);
+                    tbody.appendChild(tRow);
+                }
+            });
+        divContainer.append(table);
+        var hideLink = document.createElement('a');
+        hideLink.href = '#';
+        hideLink.className = 'js-clear-link pull-right';
+        hideLink.innerText = "Hide";
+        divContainer.append(hideLink);
     }
 
     function renderTableHeader() {
@@ -47,7 +52,17 @@
         alert("Failed to load products.");
     }
     var showProductsTable = function (shopId, shopTitle) {
-        service.getProductsInTheShop(shopId, function(data) { renderProducts(data, shopTitle); }, error);
+        service.getProductsInTheShop(
+            shopId,
+            function (data) {
+                renderProducts(data, shopTitle);
+                $('.js-clear-link ').click(function (e) {
+                    e.preventDefault();
+                    var divContainer = $('#productsContainer');
+                    divContainer.empty();
+                });
+            },
+            error);
     };
     return {
         showProductsTable: showProductsTable
