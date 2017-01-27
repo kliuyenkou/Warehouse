@@ -27,5 +27,35 @@ namespace Warehouse.Web.Controllers
             });
             return productsDto;
         }
+
+        [HttpGet]
+        [Route("shop/{shopId}/products/add")]
+        public IEnumerable<ProductDto> GetProductsNotInTheShop(int shopId)
+        {
+            var products = _productService.ProductsNotInShop(shopId);
+            var productsDto = products.Select(p => new ProductDto()
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description
+            });
+            return productsDto;
+        }
+
+        [HttpPost]
+        [Route("shop/addProduct")]
+        public ProductDto AddProductToShop(ProductInShopDto pr)
+        {
+            _productService.AddProductToTheShop(pr.ShopId, pr.ProductId);
+            var product = _productService.GetProduct(pr.ProductId);
+            var productDto = new ProductDto()
+            {
+                Id = product.Id,
+                Title = product.Title,
+                Description = product.Description
+            };
+            return productDto;
+        }
+
     }
 }

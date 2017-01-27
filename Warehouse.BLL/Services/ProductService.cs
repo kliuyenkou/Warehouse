@@ -16,23 +16,13 @@ namespace Warehouse.BLL.Services
         public IEnumerable<Product> ProductsInShop(int shopId)
         {
             var products = _supplyManagement.GetProductsInShop(shopId);
-            return products.Where(p => p != null).Select(p => new Product()
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Description = p.Description
-            });
+            return ConvertNotNullProductEntityToProduct(products);
         }
 
         public IEnumerable<Product> AllProducts()
         {
             var products = _supplyManagement.GetAllProducts();
-            return products.Where(p => p != null).Select(p => new Product()
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Description = p.Description
-            });
+            return ConvertNotNullProductEntityToProduct(products);
         }
 
         public void SaveProduct(Product product)
@@ -43,6 +33,33 @@ namespace Warehouse.BLL.Services
                 Description = product.Description
             };
             _supplyManagement.CreateProduct(productEntity);
+        }
+
+        public IEnumerable<Product> ProductsNotInShop(int shopId)
+        {
+            var products = _supplyManagement.GetProductsNotInShop(shopId);
+            return ConvertNotNullProductEntityToProduct(products);
+        }
+
+        public void AddProductToTheShop(int shopId, int productId)
+        {
+            _supplyManagement.AddProductToTheShopById(shopId, productId);
+        }
+
+        public Product GetProduct(int productId)
+        {
+            var productEntity = _supplyManagement.GetProductById(productId);
+            return new Product() { Id = productEntity.Id, Title = productEntity.Title, Description = productEntity.Description };
+        }
+
+        private IEnumerable<Product> ConvertNotNullProductEntityToProduct(IEnumerable<DAL.Entities.Product> productsEntity)
+        {
+            return productsEntity.Where(p => p != null).Select(p => new Product()
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description
+            });
         }
     }
 }

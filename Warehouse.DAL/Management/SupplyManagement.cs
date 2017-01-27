@@ -35,5 +35,25 @@ namespace Warehouse.DAL.Management
             _unitOfWork.Products.Add(product);
             _unitOfWork.SaveChanges();
         }
+
+        public IEnumerable<Product> GetProductsNotInShop(int shopId)
+        {
+            var productsInTheShop = _unitOfWork.ProductsInTheShops.GetRecordsWithProductLoaded(r => r.ShopId == shopId).Select(r => r.Product).ToList();
+            var allProducts = _unitOfWork.Products.GetAll();
+            var productsNotInTheShop = allProducts.Where(p => !productsInTheShop.Any(p2 => p2.Id == p.Id));
+            return productsNotInTheShop;
+        }
+
+        public void AddProductToTheShopById(int shopId, int productId)
+        {
+            var productInTheShop = new ProductInTheShop() { ShopId = shopId, ProductId = productId };
+            _unitOfWork.ProductsInTheShops.Add(productInTheShop);
+            _unitOfWork.SaveChanges();
+        }
+
+        public Product GetProductById(int productId)
+        {
+            return _unitOfWork.Products.GetById(productId);
+        }
     }
 }

@@ -156,6 +156,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Dto\ProductDto.cs" />
+    <Compile Include="Dto\ProductInShopDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,6 +174,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\controllers\productController.js" />
     <Content Include="Scripts\app\services\productService.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

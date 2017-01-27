@@ -9,5 +9,8 @@ namespace Warehouse.DAL.Management.Interfaces
         IEnumerable<Product> GetProductsInShop(int shopId);
         IEnumerable<Product> GetAllProducts();
         void CreateProduct(Product product);
+        IEnumerable<Product> GetProductsNotInShop(int shopId);
+        void AddProductToTheShopById(int shopId, int productId);
+        Product GetProductById(int productId);
     }
 }
