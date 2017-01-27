@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\ApplicationDbContext.cs" />
+    <Compile Include="EF\ApplicationDbInitializer.cs" />
     <Compile Include="EF\Repositories\BaseRepository.cs" />
     <Compile Include="EF\Repositories\ProductInTheShopRepository.cs" />
     <Compile Include="EF\Repositories\ProductRepository.cs" />

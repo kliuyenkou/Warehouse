@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Warehouse.DAL.Entities;
+using Warehouse.DAL.Migrations;
 
 namespace Warehouse.DAL.EF
 {
@@ -7,7 +8,7 @@ namespace Warehouse.DAL.EF
     {
         public ApplicationDbContext() : base("name=DefaultConnection")
         {
-
+            Database.SetInitializer(new ApplicationDbInitializer());
         }
 
         public DbSet<Product> Products { get; set; }
